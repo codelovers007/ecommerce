@@ -1,0 +1,8 @@
+<h1>Browse Page</h1>
+<% @categories.each do |category| %>
+  <div>
+    <%= link_to category.name, category_path(category) %>
+  </div>
+<% end %>
+
+<%= link_to 'See All Products', products_path %>

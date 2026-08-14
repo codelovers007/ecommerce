@@ -16,4 +16,16 @@ class ApplicationController < ActionController::Base
   def logged_in?
     current_user.present?
   end
+
+  def require_login
+    return if logged_in?
+    flash[:alert] = "Please login to continue"
+    redirect_to new_sessions_path
+  end
+
+  def require_admin!
+    return if logged_in? && current_user.admin?
+    flash[:alert] = "You don't have permission to access this page."
+    redirect_to root_path
+  end
 end

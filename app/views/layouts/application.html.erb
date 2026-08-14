@@ -27,6 +27,11 @@
     <% flash.each do |type, message| %>
       <%= message %>
     <% end %>
+
+    <% if logged_in? %>
+      <%= button_to "logout", sessions_path, method: :delete %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

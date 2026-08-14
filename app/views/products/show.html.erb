@@ -1,0 +1,21 @@
+<h1>Products#show</h1>
+
+<h4><%= @product.category.name %></h4>
+<div>
+  Name: <b><%= @product.name %></b>
+</div>
+<div>
+  Description: <b><%= @product.description %></b>
+</div>
+<div>
+  Sku No: <b><%= @product.sku_nu %></b>
+</div>
+<div>
+  Price: <b><%= @product.price %></b>
+</div>
+<div>
+  Stock: <b><%= @product.stock %></b>
+</div>
+
+
+<%= link_to 'back', root_path %>

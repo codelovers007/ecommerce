@@ -1,0 +1,14 @@
+<h4>Categories:</h4>
+<% @categories.each do |category| %>
+  <div>
+    <%= link_to category.name, products_path(category_id: category.id) %>
+  </div>
+<% end %>
+<%= link_to 'All Products', products_path %>
+
+<h4>Products:</h4>
+<% @products.each do |product| %>
+  <div>
+    <%= link_to product.name, product_path(product) %>
+  </div>
+<% end %>

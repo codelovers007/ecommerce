@@ -1,0 +1,22 @@
+<h3>Edit Form</h3>
+
+<%= form_with model: @product, url: admin_product_path, method: :put do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.label :description %>
+  <%= form.text_field :description %>
+
+  <%= form.label :category_id, 'Category' %>
+  <%= form.collection_select :category_id, @categories, :id, :name %>
+
+  <%= form.label :price %>
+  <%= form.text_field :price %>
+
+  <%= form.label :stock %>
+  <%= form.text_field :stock %>
+
+  <%= form.submit "Update Product" %>
+<% end %>
+
+<%= link_to 'back', admin_products_path %>

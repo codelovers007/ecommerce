@@ -1,59 +1,42 @@
-<h5>All Categories</h5>
-<table>
-  <thead>
-    <tr>
-      <th>
-        Category Name
-      </th>
-    </tr>
-  <thead>
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.name %></td>
-      </tr>
-    <% end %>
-  <tbody>
-</table>
+<div class="page">
+  <div class="page-header">
+    <h3>Admin &raquo; Products</h3>
+    <%= link_to "New Product", new_admin_product_path, class: "btn" %>
+  </div>
 
-<h5>All Products</h5>
-<%= link_to '+Product Create', new_admin_product_path %>
+  <div class="list-section">
+    <h4>Products:</h4>
 
-<table>
-  <thead>
-    <tr>
-      <th>
-        Product Name
-      </th>
-      <th>
-        Description
-      </th>
-      <th>
-        Category Name
-      </th>
-      <th>
-        Price
-      </th>
-      <th>
-        Sku_nu
-      </th>
-      <th>
-        Stock
-      </th>
-    </tr>
-  <thead>
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.description %></td>
-        <td><%= product.category.name %></td>
-        <td><%= product.price %></td>
-        <td><%= product.sku_nu %></td>
-        <td><%= product.stock %></td>
-        <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
-        <td><%= link_to 'Delete', admin_product_path(product), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
-      </tr>
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th class="actions-col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= product.name %></td>
+            <td><%= number_to_currency(product.price) %></td>
+            <td class="actions-col">
+              <div class="row-actions">
+                <%= link_to "View", admin_product_path(product), class: "btn btn-outline btn-sm" %>
+                <%= link_to "Edit", edit_admin_product_path(product), class: "btn btn-outline btn-sm" %>
+                <%= button_to "Delete", admin_product_path(product), method: :delete,
+                      form_class: "inline-form",
+                      class: "btn btn-outline btn-sm btn-danger",
+                      data: { turbo_confirm: "Delete #{product.name}?" } %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <% if @products.empty? %>
+      <div class="empty-state">No products yet.</div>
     <% end %>
-  <tbody>
-</table>
+  </div>
+</div>

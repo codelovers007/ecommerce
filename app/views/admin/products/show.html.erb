@@ -1,5 +1,5 @@
 <div class="page">
-  <h1>Products#show</h1>
+  <h1>Product Details</h1>
 
   <div class="card product-detail">
     <h4 class="product-category"><%= @product.category.name %></h4>
@@ -28,13 +28,7 @@
       <span class="attr-label">Stock</span>
       <span class="attr-value"><%= @product.stock %></span>
     </div>
-    <%= form_with url: cart_items_path, method: :post do |f| %>
-      <%= f.hidden_field :product_id, value: @product.id %>
-      <%= f.label :quantity, "QTY" %>
-      <%= f.number_field :quantity, value: 1, min: 1, max: @product.stock %>
-      <%= f.submit "Add to Cart" %>
-    <% end %>
   </div>
 
-  <%= link_to 'back', root_path, class: "back-link" %>
+  <%= link_to 'back', admin_products_path, class: "back-link" %>
 </div>

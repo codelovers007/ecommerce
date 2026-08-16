@@ -1,14 +1,45 @@
-<h4>Categories:</h4>
-<% @categories.each do |category| %>
-  <div>
-    <%= link_to category.name, products_path(category_id: category.id) %>
-  </div>
-<% end %>
-<%= link_to 'All Products', products_path %>
+<div class="page">
+  <div class="list-section">
+    <h4>Filter by Category</h4>
+    <%= form_with url: products_path, method: :get, html: { class: "filter-form" } do |f| %>
+      <%= f.select :category_id,
+            options_for_select(@categories.map { |c| [c.name, c.id] }, params[:category_id]),
+            { include_blank: "All Categories" },
+            { class: "filter-select", onchange: "this.form.requestSubmit()" } %>
+      <noscript><%= f.submit "Filter", class: "btn btn-sm" %></noscript>
+    <% end %>
 
-<h4>Products:</h4>
-<% @products.each do |product| %>
-  <div>
-    <%= link_to product.name, product_path(product) %>
+    <div class="chip-list">
+      <%= link_to products_path, class: "chip #{'chip-active' if params[:category_id].blank?}" do %>
+        All Products
+      <% end %>
+      <% @categories.each do |category| %>
+        <%= link_to products_path(category_id: category.id),
+              class: "chip #{'chip-active' if params[:category_id].to_s == category.id.to_s}" do %>
+          <%= image_tag(category.respond_to?(:image) && category.image.attached? ? category.image : "default-category.svg",
+                class: "chip-icon") %>
+          <%= category.name %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-<% end %>
+
+  <div class="list-section">
+    <h4>Products:</h4>
+    <div class="product-grid">
+      <% if @products.any? %>
+        <% @products.each do |product| %>
+          <%= link_to product_path(product), class: "product-card" do %>
+            <div class="product-thumb">
+              <%= image_tag(product.respond_to?(:image) && product.image.attached? ? product.image : "default-product.svg",
+                    class: "product-thumb-img") %>
+            </div>
+            <div class="product-card-name"><%= product.name %></div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <div class="empty-state">No products found in this category.</div>
+      <% end %>
+    </div>
+  </div>
+</div>

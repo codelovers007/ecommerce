@@ -1,0 +1,6 @@
+<% if @cart.cart_items.any? %>
+  <p>We have cart items</p>
+<% else %>
+  <p>You don't have any cart product</p>
+  <%= link_to "Browse Products", products_path %>
+<% end %>

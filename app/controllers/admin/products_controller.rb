@@ -5,6 +5,10 @@ class Admin::ProductsController < Admin::BaseController
     @products = Product.all
   end
 
+  def show
+    @product = Product.find(params[:id])
+  end
+
   def new
     @product = Product.new
     @categories = Category.all
@@ -45,6 +49,6 @@ class Admin::ProductsController < Admin::BaseController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :category_id, :price, :stock)
+    params.require(:product).permit(:name, :description, :category_id, :price, :stock, :image)
   end
 end

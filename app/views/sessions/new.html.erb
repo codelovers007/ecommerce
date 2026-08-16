@@ -1,12 +1,21 @@
-<h1>Sessions#new</h1>
-<%= form_with url: sessions_path, method: :post do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+<div class="page">
+  <h1>Sessions#new</h1>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  <div class="card">
+    <%= form_with url: sessions_path, method: :post, html: { class: "form" } do |f| %>
+      <div class="form-field">
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </div>
 
-  <%= f.submit "Login" %>
-<% end %>
+      <div class="form-field">
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </div>
 
-<%= link_to "sing up", new_registrations_path %>
+      <%= f.submit "Login" %>
+    <% end %>
+  </div>
+
+  <%= link_to "sing up", new_registrations_path %>
+</div>

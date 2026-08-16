@@ -1,22 +1,41 @@
-<h3>Edit Form</h3>
+<div class="page">
+  <h3>Create Product</h3>
 
-<%= form_with model: @product, url: admin_product_path, method: :put do |form| %>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
+  <div class="card">
+    <%= form_with model: @product, url: admin_product_path, html: { class: "form" } do |form| %>
+      <div class="form-field">
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+      </div>
 
-  <%= form.label :description %>
-  <%= form.text_field :description %>
+      <div class="form-field">
+        <%= form.label :description %>
+        <%= form.text_field :description %>
+      </div>
 
-  <%= form.label :category_id, 'Category' %>
-  <%= form.collection_select :category_id, @categories, :id, :name %>
+      <div class="form-field">
+        <%= form.label :image %>
+        <%= form.file_field :image %>
+      </div>
 
-  <%= form.label :price %>
-  <%= form.text_field :price %>
+      <div class="form-field">
+        <%= form.label :category_id, 'Category' %>
+        <%= form.collection_select :category_id, @categories, :id, :name %>
+      </div>
 
-  <%= form.label :stock %>
-  <%= form.text_field :stock %>
+      <div class="form-field">
+        <%= form.label :price %>
+        <%= form.text_field :price %>
+      </div>
 
-  <%= form.submit "Update Product" %>
-<% end %>
+      <div class="form-field">
+        <%= form.label :stock %>
+        <%= form.text_field :stock %>
+      </div>
 
-<%= link_to 'back', admin_products_path %>
+      <%= form.submit "Update Product" %>
+    <% end %>
+  </div>
+
+  <%= link_to 'back', admin_products_path, class: "back-link" %>
+</div>

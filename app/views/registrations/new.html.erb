@@ -1,18 +1,31 @@
-<h1>Registrations#new</h1>
-<%= form_with model: @user, url: registrations_path, method: :post do |form| %>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
+<div class="page">
+  <h1>Registrations#new</h1>
 
-  <%= form.label :email %>
-  <%= form.email_field :email %>
+  <div class="card">
+    <%= form_with model: @user, url: registrations_path, method: :post, html: { class: "form" } do |form| %>
+      <div class="form-field">
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+      </div>
 
-  <%= form.label :password %>
-  <%= form.password_field :password %>
+      <div class="form-field">
+        <%= form.label :email %>
+        <%= form.email_field :email %>
+      </div>
 
-  <%= form.label :password_confirmation %>
-  <%= form.password_field :password_confirmation %>
+      <div class="form-field">
+        <%= form.label :password %>
+        <%= form.password_field :password %>
+      </div>
 
-  <%= form.submit "Sign Up" %>
-<% end %>
+      <div class="form-field">
+        <%= form.label :password_confirmation %>
+        <%= form.password_field :password_confirmation %>
+      </div>
 
-<%= link_to "Login", new_sessions_path %>
+      <%= form.submit "Sign Up" %>
+    <% end %>
+  </div>
+
+  <%= link_to "Login", new_sessions_path %>
+</div>

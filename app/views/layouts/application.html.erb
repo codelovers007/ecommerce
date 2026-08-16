@@ -24,12 +24,35 @@
   </head>
 
   <body>
-    <% flash.each do |type, message| %>
-      <%= message %>
-    <% end %>
+    <header class="site-header">
+      <div class="container">
+        <%= link_to "E Commerce App", root_path, class: "brand" %>
 
-    <% if logged_in? %>
-      <%= button_to "logout", sessions_path, method: :delete %>
+        <nav class="nav-links">
+          <%= link_to "Home", root_path %>
+          <%= link_to cart_path do %>
+            Cart
+            <span><%= current_cart.cart_items.sum(:quantity) %></span>
+          <% end %>
+
+          <% if logged_in? %>
+            <% if current_user.respond_to?(:admin?) && current_user.admin? %>
+              <%= link_to "Admin", admin_products_path %>
+            <% end %>
+            <%= button_to "Logout", sessions_path, method: :delete, form_class: "inline-form", class: "btn btn-outline btn-sm" %>
+          <% else %>
+            <%= link_to "Products", products_path %>
+            <%= link_to "Login", new_sessions_path, class: "btn btn-outline btn-sm" %>
+            <%= link_to "Sign up", new_registrations_path, class: "btn btn-sm" %>
+          <% end %>
+        </nav>
+      </div>
+    </header>
+
+    <% flash.each do |type, message| %>
+      <div class="flash flash-<%= type %>">
+        <%= message %>
+      </div>
     <% end %>
 
     <%= yield %>

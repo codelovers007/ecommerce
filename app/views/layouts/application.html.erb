@@ -30,9 +30,9 @@
 
         <nav class="nav-links">
           <%= link_to "Home", root_path %>
-          <%= link_to cart_path do %>
+          <%= link_to cart_path, class: "cart-link" do %>
             Cart
-            <span><%= current_cart.cart_items.sum(:quantity) %></span>
+            <span class="cart-badge"><%= current_cart.cart_items.sum(:quantity) %></span>
           <% end %>
 
           <% if logged_in? %>

@@ -29,13 +29,20 @@
     <div class="product-grid">
       <% if @products.any? %>
         <% @products.each do |product| %>
-          <%= link_to product_path(product), class: "product-card" do %>
-            <div class="product-thumb">
-              <%= image_tag(product.respond_to?(:image) && product.image.attached? ? product.image : "default-product.svg",
-                    class: "product-thumb-img") %>
-            </div>
-            <div class="product-card-name"><%= product.name %></div>
-          <% end %>
+          <div class="product-card">
+            <%= link_to product_path(product), class: "product-card-link" do %>
+              <div class="product-thumb">
+                <%= image_tag(product.respond_to?(:image) && product.image.attached? ? product.image : "default-product.svg",
+                      class: "product-thumb-img") %>
+              </div>
+              <div class="product-card-name"><%= product.name %></div>
+            <% end %>
+            <%= form_with url: cart_items_path, method: :post, html: { class: "add-to-cart-form-sm" } do |f| %>
+              <%= f.hidden_field :product_id, value: product.id %>
+              <%= f.hidden_field :quantity, value: 1 %>
+              <%= f.submit "Add to Cart", class: "btn" %>
+            <% end %>
+          </div>
         <% end %>
       <% else %>
         <div class="empty-state">No products found in this category.</div>

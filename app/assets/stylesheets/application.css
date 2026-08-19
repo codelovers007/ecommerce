@@ -625,3 +625,146 @@ a:hover {
   background: var(--color-danger);
   color: #fff;
 }
+
+/* ---- Cart nav icon / badge ---- */
+.cart-link {
+  position: relative;
+  padding-right: 0.25rem;
+}
+
+.cart-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-left: 0.3rem;
+  vertical-align: middle;
+}
+
+/* ---- Add to cart (product show) ---- */
+.add-to-cart-form {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.add-to-cart-form label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.qty-input {
+  width: 64px;
+  padding: 0.45rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.qty-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(52, 84, 209, 0.15);
+}
+
+/* ---- Add to cart (product grid card) ---- */
+.product-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.product-card-link {
+  display: block;
+  color: var(--color-text);
+}
+
+.product-card-link:hover {
+  text-decoration: none;
+}
+
+.add-to-cart-form-sm {
+  padding: 0 0.5rem 0.5rem;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+}
+
+/* ---- Cart page ---- */
+.cart-table td {
+  vertical-align: middle;
+}
+
+.cart-product-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.cart-thumb {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.cart-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.qty-form {
+  margin: 0;
+}
+
+.cart-summary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.cart-total {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-right: auto;
+  font-size: 1rem;
+}
+
+.cart-total-amount {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+/* ---- Simple info panels (sessions#create / #destroy placeholders) ---- */
+.info-panel {
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  color: var(--color-text-muted);
+}
+
+.info-panel code,
+.info-panel p {
+  font-size: 0.9rem;
+}
